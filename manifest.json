@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Echo360 Lecture Downloader",
+  "version": "2.0.0",
+  "description": "Download Echo360 lectures (screen/camera + audio) as MP4 files from a course's class list.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://echo360.org.uk/*"],
+      "js": ["src/hls.js", "src/fmp4.js", "src/echo360.js", "src/panel.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_title": "Echo360 Downloader: open on a course's class list"
+  }
+}
